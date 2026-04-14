@@ -402,7 +402,7 @@ export default function SkillsGapAssignmentBuilder() {
 
             <ol className="space-y-2 list-decimal pl-5">
               {assignment.instructions.map((s, i) => (
-                <li key={i}</li>
+                <li key={i}>{s}</li>
               ))}
             </ol>
 
