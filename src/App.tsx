@@ -145,7 +145,7 @@ function buildAssignment({
   let engagementPrompt = "Follow the provided steps closely and keep your response focused.";
 
   if (interest > 33 && interest <= 66) {
-    engagementHeading = "Career connection";
+    engagementHeading = "Career Connection";
     engagementPrompt = "Connect your analysis to your own goals or possible career direction.";
   } else if (interest > 66) {
     engagementHeading = "Personal strategy";
@@ -402,7 +402,7 @@ export default function SkillsGapAssignmentBuilder() {
 
             <ol className="space-y-2 list-decimal pl-5">
               {assignment.instructions.map((s, i) => (
-                <li key={i}>{s}</li>
+                <li key={i}</li>
               ))}
             </ol>
 
