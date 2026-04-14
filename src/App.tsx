@@ -152,16 +152,40 @@ function buildAssignment({
     engagementPrompt = "Choose a specific role that excites you and tailor your analysis around it.";
   }
 
-  const instructions = [
-    `1. Use the provided job market update for ${major} as context for your analysis.`,
-    `2. Find 3 to 5 recent ${exp.roleLevel} job postings in ${major}.`,
-    "3. Identify the most common technical and professional skills required.",
-    `4. Analyze the postings to ${exp.analysisDepth}.`,
-    "5. Explain which skills are easier to learn in school and which require real-world experience.",
-    `6. Suggest how a student in ${major} could better prepare for these roles.`,
-    `7. ${engagementPrompt}`,
-    `8. Write your response in a way that feels ${intr.tone}. ${intr.framing}`,
+  let experienceDirections: string[] = [];
+
+if (experience === "foundational") {
+  experienceDirections = [
+    "Use clear examples from the job postings to explain what employers are looking for.",
+    "Focus on identifying baseline skills and describing why they matter.",
+    "Keep your analysis organized and easy to follow."
   ];
+} else if (experience === "applied") {
+  experienceDirections = [
+    "Compare skill expectations across postings and explain where meaningful patterns appear.",
+    "Show how classroom learning connects to real workplace expectations.",
+    "Use your analysis to identify practical gaps a student could work on closing."
+  ];
+} else if (experience === "professional") {
+  experienceDirections = [
+    "Focus on advanced or leadership-oriented expectations in the postings.",
+    "Discuss how strategic, communication, and decision-making skills appear in these roles.",
+    "Frame your recommendations in a professional, career-ready way."
+  ];
+}
+
+const instructions = [
+  `Use the provided job market update for ${major} as context for your analysis.`,
+  `Find 3 to 5 recent ${exp.roleLevel} job postings in ${major}.`,
+  `Identify the most common technical and professional skills required.`,
+  `Analyze the postings to ${exp.analysisDepth}.`,
+  ...experienceDirections,
+  `Suggest how a student in ${major} could better prepare for these roles.`,
+  `${engagementPrompt}`,
+  `Write your response in a way that feels ${intr.tone}. ${intr.framing}`,
+];
+  
+ 
 
   const deliverable = `Create a ${exp.deliverable}. Include the job market context, summary of postings, skills analysis, and recommendations.`;
 
